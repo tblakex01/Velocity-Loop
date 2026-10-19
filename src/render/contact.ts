@@ -71,6 +71,33 @@ const chassisFootprints = Object.fromEntries(
   }),
 ) as Record<CarDefinition["body"], THREE.Vector3[]>;
 
+// All tires and chassis edges at the same longitudinal offset share a road
+// sample. Build the groups once rather than repeating that lookup per vertex.
+const supportSections = Object.fromEntries(
+  Object.entries(chassisFootprints).map(([body, chassis]) => {
+    const sections = new Map<
+      number,
+      { z: number; tires: THREE.Vector3[]; chassis: THREE.Vector3[] }
+    >();
+    for (const [points, key] of [
+      [tireFootprint, "tires"],
+      [chassis, "chassis"],
+    ] as const)
+      for (const point of points) {
+        let section = sections.get(point.z);
+        if (!section) {
+          section = { z: point.z, tires: [], chassis: [] };
+          sections.set(point.z, section);
+        }
+        section[key].push(point);
+      }
+    return [body, [...sections.values()]];
+  }),
+) as Record<
+  CarDefinition["body"],
+  { z: number; tires: THREE.Vector3[]; chassis: THREE.Vector3[] }[]
+>;
+
 export function getVehiclePose(
   courseId: CourseId,
   distance: number,
@@ -96,31 +123,36 @@ export function getVehiclePose(
     new THREE.Matrix4().makeBasis(right, up, tangent),
   );
   const local = new THREE.Vector3(),
-    world = new THREE.Vector3();
+    world = new THREE.Vector3(),
+    normal = new THREE.Vector3(),
+    center = new THREE.Vector3();
+  const cos = Math.cos(roll),
+    sin = Math.sin(roll);
   let lift = -Infinity;
-  function support(point: THREE.Vector3, chassis: boolean) {
+  function support(point: THREE.Vector3, chassis: boolean, alignment: number) {
     local.copy(point);
     if (chassis) {
       const x = local.x,
         y = local.y;
-      local.x = x * Math.cos(roll) - y * Math.sin(roll);
-      local.y = x * Math.sin(roll) + y * Math.cos(roll) + bounce;
+      local.x = x * cos - y * sin;
+      local.y = x * sin + y * cos + bounce;
     }
     world.copy(local).applyQuaternion(quaternion).add(base);
-    const road = sampleTrack(courseId, distance + local.z),
-      normal = vec(road.up);
-    const alignment = up.dot(normal);
-    if (alignment <= 0.5)
-      throw new Error("Road curvature exceeds the vehicle support footprint.");
     const required =
-      (TRACK_SURFACE_HEIGHT +
-        CONTACT_SKIN -
-        world.clone().sub(vec(road.center)).dot(normal)) /
+      (TRACK_SURFACE_HEIGHT + CONTACT_SKIN - world.sub(center).dot(normal)) /
       alignment;
     lift = Math.max(lift, required);
   }
-  tireFootprint.forEach((point) => support(point, false));
-  chassisFootprints[body].forEach((point) => support(point, true));
+  for (const section of supportSections[body]) {
+    const road = sampleTrack(courseId, distance + section.z);
+    normal.fromArray(road.up);
+    center.fromArray(road.center);
+    const alignment = up.dot(normal);
+    if (alignment <= 0.5)
+      throw new Error("Road curvature exceeds the vehicle support footprint.");
+    for (const point of section.tires) support(point, false, alignment);
+    for (const point of section.chassis) support(point, true, alignment);
+  }
   return {
     position: base.addScaledVector(up, lift + airHeight),
     quaternion,

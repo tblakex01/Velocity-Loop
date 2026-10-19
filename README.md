@@ -67,3 +67,16 @@ The workshop, track, and four detailed cars are modeled directly in Three.js and
 The four cars have distinct coachwork, cabins, lights, vents and wheel designs. Garage portraits are rendered from those exact models using the game’s WebGL renderer. Chase framing and tire support use canonical model bounds; the road includes visual shoulders to keep steering wheels clear of raised lips. The timed ghost gap is calculated from recorded first-arrival frames, including waits and recoveries. Nitro charge, speed and race clocks display actual simulation state.
 
 The menu and on-track concepts were created with the built-in imagegen tool and saved under `docs/concepts/`. `public/assets/workshop-atlas.png` is a generated nine-region texture atlas applied to modeled geometry; it is not a backdrop. See [asset prompts](docs/asset-prompts.md).
+
+## Performance checks
+
+`npm run benchmark` compares native and indexed road collision queries over 1,000
+positions on every course, with a warm-up and three timed passes. It also reports
+vehicle placement and track setup CPU time. These measurements exclude WebGL and
+are not frame-rate claims; browser rendering still depends on the GPU, resolution,
+shadows, and graphics settings.
+
+Road geometry builds a spatial index once per course, and camera collision uses
+its nearest triangle hit. Vehicle placement shares road samples across tire and
+chassis points at the same longitudinal offset. Idle menu, pause, and results
+screens publish UI snapshots only when their state changes.

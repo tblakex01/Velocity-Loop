@@ -13,6 +13,7 @@ function chaseFieldOfView(speed: number, aspect: number) {
   );
 }
 const occlusionRay = new THREE.Raycaster();
+occlusionRay.firstHitOnly = true;
 const rayDirection = new THREE.Vector3();
 const collisionNormal = new THREE.Vector3();
 const normalMatrix = new THREE.Matrix3();

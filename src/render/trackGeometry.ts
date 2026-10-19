@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { MeshBVH } from "three-mesh-bvh";
 import type { TrackSample } from "../game/types";
 import {
   TRACK_SURFACE_HEIGHT,
@@ -56,5 +57,8 @@ export function createTrackGeometry(points: readonly TrackSample[]) {
   geometry.computeVertexNormals();
   geometry.computeBoundingBox();
   geometry.computeBoundingSphere();
+  // Preserve triangle order for rendering and face indices while indexing the
+  // static road once per course for camera collision queries.
+  geometry.boundsTree = new MeshBVH(geometry, { indirect: true });
   return geometry;
 }

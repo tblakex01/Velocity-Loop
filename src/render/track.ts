@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { acceleratedRaycast } from "three-mesh-bvh";
 import type { CourseId, TrackSample } from "../game/types";
 import { getTrackPoints, sampleTrack } from "../game/track";
 import { box, cylinder, labelTexture, vec } from "./shared";
@@ -31,6 +32,7 @@ export function buildTrack(courseId: CourseId) {
     }),
   );
   road.receiveShadow = true;
+  road.raycast = acceleratedRaycast;
   road.castShadow = true;
   root.add(road);
   root.add(buildTrackLights(points));
