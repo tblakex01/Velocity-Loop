@@ -1,0 +1,406 @@
+.race-top {
+  display: flex;
+  justify-content: space-between;
+  height: 48px;
+  align-items: center;
+  padding: 0 25px;
+  background: #11151ae8;
+  border-bottom: 1px solid #ffffff12;
+  gap: 20px;
+}
+.race-brand {
+  font:
+    700 italic 26px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 1.2px;
+  white-space: nowrap;
+  flex: 1;
+}
+.race-brand b {
+  font-weight: 700;
+}
+.race-course-label {
+  font:
+    500 italic 17px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.race-actions {
+  display: flex;
+  gap: 8px;
+  pointer-events: auto;
+  margin-left: auto;
+}
+.race-actions button {
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+  background: transparent;
+  border: 0;
+  width: 38px;
+  height: 38px;
+}
+.race-lap-status {
+  position: absolute;
+  top: 70px;
+  left: 29px;
+  font:
+    600 15px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-shadow: 0 2px 9px #000;
+}
+.race-lap-status span {
+  font:
+    500 8px "Inter",
+    sans-serif;
+  letter-spacing: 1.3px;
+  color: #e2e4de;
+}
+.race-clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-shadow: 0 3px 20px #111;
+  position: absolute;
+  top: 58px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  min-width: 260px;
+}
+.race-clock > strong {
+  font-variant-numeric: tabular-nums;
+  font:
+    700 italic 72px/0.9 "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 1px;
+}
+.race-clock > span {
+  color: #bebfb9;
+  margin-top: 10px;
+  font-size: 8px;
+  letter-spacing: 1.4px;
+}
+.race-clock b {
+  font-size: 10px;
+  letter-spacing: 0;
+  color: #fff;
+  margin-left: 7px;
+}
+.race-clock .ghost-time-gap {
+  font:
+    600 italic 24px "Barlow Condensed",
+    sans-serif;
+  color: #d4e5e6;
+  letter-spacing: 1px;
+}
+.race-clock .ghost-time-gap.ahead {
+  color: var(--cyan);
+}
+.race-clock .ghost-time-gap.behind {
+  color: #ffd399;
+}
+.ghost-time-gap small {
+  display: block;
+  font:
+    500 7px "Inter",
+    sans-serif;
+  letter-spacing: 1px;
+  margin-top: 4px;
+  color: #c2d4d8;
+}
+.race-bottom {
+  position: absolute;
+  bottom: 24px;
+  left: 28px;
+  right: 28px;
+  display: block;
+}
+.race-hint {
+  color: #c9cdc7;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 7px;
+  white-space: nowrap;
+}
+.race-meters {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+}
+.speed {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  min-width: 100px;
+  padding-top: 45px;
+}
+.speed strong {
+  font-variant-numeric: tabular-nums;
+  font:
+    700 italic 76px/0.8 "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 1px;
+}
+.speed span {
+  font:
+    500 italic 20px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 2px;
+  margin-top: 9px;
+}
+.nitro-energy-line {
+  flex: 1;
+  height: 3px;
+  background: #68e4eb;
+  box-shadow:
+    0 0 6px #3ac7e9,
+    0 0 13px #3ac7e940;
+  margin-top: 65px;
+  position: relative;
+  opacity: 0.85;
+}
+.nitro-energy-line i {
+  width: 13px;
+  height: 13px;
+  display: block;
+  border-radius: 50%;
+  background: #6cf8ff;
+  position: absolute;
+  left: 0;
+  top: -5px;
+  box-shadow: 0 0 10px #3ef5ff;
+}
+.nitro-gauge {
+  position: relative;
+  width: 158px;
+  height: 158px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 8px #33bdc642);
+}
+.nitro-gauge svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transform: rotate(0);
+}
+.nitro-halo {
+  fill: none;
+  stroke: #75eaff;
+  stroke-width: 1.5;
+  opacity: 0.65;
+}
+.nitro-face {
+  fill: #111b28db;
+  stroke: #21444f;
+  stroke-width: 6;
+}
+.nitro-progress {
+  fill: none;
+  stroke: #61eaff;
+  stroke-width: 6;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 4px #28b6d0);
+}
+.nitro-inner {
+  fill: none;
+  stroke: #aac2c64d;
+  stroke-width: 0.8;
+}
+.nitro-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding-top: 4px;
+}
+.nitro-label > span {
+  font:
+    600 italic 20px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 1px;
+  color: #d6dedc;
+}
+.nitro-label strong {
+  font:
+    700 italic 44px/0.9 "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 1px;
+}
+.nitro-label small {
+  font-size: 24px;
+  margin-left: 3px;
+}
+.nitro-gauge.boosting {
+  filter: drop-shadow(0 0 12px #28b6d088);
+}
+.skill-event {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--cyan);
+  padding: 8px 15px;
+  top: 27%;
+  background: transparent;
+  text-shadow: 0 2px 10px #102238;
+  font:
+    600 italic 22px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 1px;
+}
+.race-hud {
+  position: relative;
+  min-height: 100svh;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    #141c2380,
+    transparent 25%,
+    transparent 72%,
+    #10182375
+  );
+}
+@media (max-width: 700px) {
+  .race-top {
+    height: calc(42px + env(safe-area-inset-top));
+    padding: 0 14px;
+    padding-top: env(safe-area-inset-top);
+    gap: 7px;
+  }
+  .race-brand {
+    font-size: 17px;
+    letter-spacing: 0.4px;
+  }
+  .race-course-label {
+    position: static;
+    transform: none;
+    font-size: 11px;
+    letter-spacing: 1px;
+    max-width: 105px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .race-actions {
+    gap: 0;
+  }
+  .race-actions button {
+    width: 29px;
+    height: 33px;
+  }
+  .race-clock {
+    top: calc(56px + env(safe-area-inset-top));
+    min-width: 200px;
+  }
+  .race-clock > strong {
+    font-size: 49px;
+  }
+  .race-clock .ghost-time-gap {
+    font-size: 20px;
+    margin-top: 5px;
+  }
+  .ghost-time-gap small {
+    font-size: 5px;
+  }
+  .race-lap-status {
+    top: calc(130px + env(safe-area-inset-top));
+    left: 16px;
+    font-size: 11px;
+    gap: 5px;
+  }
+  .race-lap-status span {
+    font-size: 6px;
+  }
+  .race-clock > span {
+    font-size: 6px;
+    letter-spacing: 0.7px;
+  }
+  .race-clock b {
+    font-size: 7px;
+    margin-left: 3px;
+  }
+  .race-bottom {
+    bottom: 119px;
+    left: 18px;
+    right: 18px;
+  }
+  .race-meters {
+    gap: 10px;
+  }
+  .speed {
+    padding-top: 27px;
+    min-width: 65px;
+  }
+  .speed strong {
+    font-size: 51px;
+  }
+  .speed span {
+    font-size: 12px;
+    margin-top: 7px;
+    letter-spacing: 1px;
+  }
+  .nitro-gauge {
+    width: 103px;
+    height: 103px;
+  }
+  .nitro-label > span {
+    font-size: 13px;
+  }
+  .nitro-label strong {
+    font-size: 30px;
+  }
+  .nitro-label small {
+    font-size: 17px;
+  }
+  .nitro-energy-line {
+    margin-top: 35px;
+    height: 2px;
+    opacity: 0.65;
+  }
+  .nitro-energy-line i {
+    height: 8px;
+    width: 8px;
+    top: -3px;
+  }
+  .skill-event {
+    top: 27%;
+    font-size: 16px;
+    max-width: 85%;
+    white-space: normal;
+    text-align: center;
+  }
+  .race-hint {
+    display: none;
+  }
+}
+@media (pointer: coarse) and (min-width: 701px) {
+  .race-hint {
+    display: none;
+  }
+  .race-bottom {
+    bottom: 100px;
+  }
+  .nitro-gauge {
+    width: 125px;
+    height: 125px;
+  }
+  .speed strong {
+    font-size: 62px;
+  }
+}

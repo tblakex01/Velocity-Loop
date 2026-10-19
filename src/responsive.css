@@ -1,0 +1,181 @@
+@media (min-width: 1500px) {
+  .home {
+    padding: 0 5%;
+  }
+  .menu-main {
+    gap: 9%;
+    padding-top: 42px;
+  }
+  .course-row {
+    height: 76px;
+  }
+  .course-panel h1 {
+    margin-bottom: 28px;
+  }
+  .showroom-caption {
+    margin-top: 300px;
+  }
+  .home-header {
+    height: 105px;
+  }
+}
+@media (max-width: 1050px) and (min-width: 701px) {
+  .home {
+    padding: 0 3%;
+  }
+  .header-caption {
+    display: none;
+  }
+  .menu-main {
+    grid-template-columns: 41% 1fr;
+    gap: 4%;
+    min-height: 500px;
+  }
+  .track-map {
+    width: 43px;
+  }
+  .course-row {
+    gap: 8px;
+  }
+  .course-name strong {
+    font-size: 17px;
+  }
+  .course-time {
+    font-size: 17px;
+  }
+  .car-option {
+    padding: 10px 7px;
+  }
+  .car-option strong {
+    font-size: 14px;
+  }
+  .car-option small {
+    font-size: 6px;
+  }
+  .car-specs .xp-level {
+    display: none;
+  }
+  .assist-label {
+    min-width: 120px;
+  }
+  .assist-label span {
+    max-width: 115px;
+    line-height: 1.5;
+  }
+  .menu-footer {
+    gap: 12px;
+  }
+  .assist-options button {
+    padding: 11px 8px;
+    gap: 7px;
+  }
+  .assist-options small {
+    font-size: 6px;
+  }
+  .race-button {
+    min-width: 160px;
+    padding: 0 20px;
+  }
+  .home-bottom {
+    font-size: 6px;
+  }
+}
+@media (max-height: 800px) and (min-width: 701px) {
+  .home-header {
+    height: 72px;
+  }
+  .menu-main {
+    padding: 20px 0;
+    min-height: 470px;
+  }
+  .course-panel h1 {
+    font-size: 52px;
+    margin: 12px 0 17px;
+  }
+  .course-row {
+    height: 58px;
+  }
+  .showroom-caption {
+    margin-top: 230px;
+  }
+  .car-specs {
+    margin-top: 12px;
+  }
+  .menu-footer {
+    padding: 15px 0;
+  }
+  .home-bottom {
+    padding-bottom: 12px;
+  }
+}
+@media (pointer: coarse) and (min-width: 701px) {
+  .touch-controls {
+    display: flex;
+    position: absolute;
+    left: 25px;
+    right: 25px;
+    bottom: 20px;
+    justify-content: space-between;
+    pointer-events: auto;
+  }
+  .touch-steer,
+  .touch-pedals {
+    display: flex;
+    gap: 10px;
+  }
+  .touch-button {
+    width: 60px;
+    height: 60px;
+    background: #182432c0;
+    border: 1px solid #ffffff50;
+    border-radius: 8px;
+    touch-action: none;
+  }
+  .touch-throttle {
+    background: #ff842ecc;
+  }
+  .touch-nitro {
+    color: var(--cyan);
+  }
+}
+@media (max-width: 700px) and (max-height: 740px) {
+  .showroom {
+    padding-top: 106px;
+    min-height: 208px;
+  }
+  .showroom-caption {
+    top: 73px;
+  }
+  .home-header {
+    height: 54px;
+  }
+  .course-row {
+    height: 43px;
+  }
+  .mode-note {
+    margin-top: 6px;
+  }
+  .menu-footer {
+    margin-top: 8px;
+    padding-top: 9px;
+    gap: 7px;
+  }
+  .course-columns {
+    padding-bottom: 5px;
+  }
+  .assist-options button {
+    min-height: 38px;
+    padding: 7px;
+  }
+  .race-button {
+    min-height: 44px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

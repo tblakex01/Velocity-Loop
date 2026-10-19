@@ -1,0 +1,172 @@
+@media (max-width: 700px) {
+  .countdown strong {
+    font-size: 115px;
+  }
+  .countdown span {
+    font-size: 7px;
+  }
+  .touch-controls {
+    display: flex;
+    position: absolute;
+    bottom: max(22px, env(safe-area-inset-bottom));
+    left: 15px;
+    right: 15px;
+    justify-content: space-between;
+    pointer-events: auto;
+    gap: 12px;
+    user-select: none;
+  }
+  .touch-steer,
+  .touch-pedals {
+    display: flex;
+    gap: 7px;
+    align-items: flex-end;
+  }
+  .touch-button {
+    width: 55px;
+    height: 58px;
+    background: #1b2637c9;
+    backdrop-filter: blur(8px);
+    border: 1px solid #ffffff45;
+    border-radius: 9px;
+    display: grid;
+    place-items: center;
+    font:
+      600 26px "Barlow Condensed",
+      sans-serif;
+    touch-action: none;
+  }
+  .touch-button:active {
+    background: #ff842e88;
+    color: #fff;
+  }
+  .touch-brake {
+    font-size: 11px;
+    width: 43px;
+    height: 49px;
+  }
+  .touch-throttle {
+    background: #ff842ee5;
+    font-size: 22px;
+    width: 58px;
+    color: #1b2027;
+  }
+  .touch-nitro {
+    color: var(--cyan);
+    border-color: #63e4ed88;
+    width: 48px;
+  }
+  .pause-screen {
+    padding: 16px;
+  }
+  .pause-card {
+    min-width: 0;
+    width: 100%;
+    padding: 25px;
+  }
+  .pause-card h2 {
+    font-size: 36px;
+  }
+  .results-screen {
+    padding: 16px;
+    min-height: 100svh;
+  }
+  .results-card {
+    padding: 25px 18px;
+  }
+  .results-card > .eyebrow {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  .medal-badge {
+    width: 55px;
+    height: 55px;
+    margin: 18px auto 13px;
+  }
+  .results-card h1 {
+    font-size: 34px;
+  }
+  .finish-clock {
+    font-size: 63px;
+  }
+  .finish-awards {
+    gap: 10px;
+    font-size: 6px;
+    letter-spacing: 0.5px;
+  }
+  .finish-delta {
+    font-size: 9px;
+  }
+  .skill-rewards {
+    margin-top: 17px;
+    padding: 15px 0;
+    gap: 6px;
+  }
+  .skill-rewards span {
+    font-size: 5px;
+    letter-spacing: 0.3px;
+  }
+  .skill-rewards b {
+    font-size: 20px;
+  }
+  .medal-targets {
+    font-size: 7px;
+  }
+  .result-buttons {
+    margin-top: 20px;
+    gap: 8px;
+  }
+  .result-buttons .primary-button {
+    width: 100%;
+    font-size: 22px;
+  }
+  .result-buttons > button:not(.primary-button) {
+    font-size: 9px;
+    min-height: 40px;
+  }
+  .result-competition {
+    gap: 17px;
+    margin-top: 15px;
+  }
+  .result-competition > button {
+    font-size: 8px;
+  }
+  .modal > header {
+    padding: 19px;
+  }
+  .modal h2 {
+    font-size: 27px;
+  }
+  .modal-body {
+    padding: 19px;
+  }
+  .modal-body p {
+    font-size: 10px;
+  }
+  .ranking-filters {
+    gap: 6px;
+  }
+  .ranking-filters select {
+    padding: 9px 5px;
+    font-size: 9px;
+  }
+  .toggle-row {
+    gap: 12px;
+    font-size: 11px;
+  }
+  .toggle-row small {
+    font-size: 8px;
+    max-width: 220px;
+    line-height: 1.5;
+  }
+  .controls-reference p {
+    font-size: 8px;
+  }
+  .recovery-code {
+    font-size: 16px;
+  }
+  .notice {
+    font-size: 9px;
+    width: calc(100% - 24px);
+  }
+}

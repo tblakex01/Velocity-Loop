@@ -1,0 +1,179 @@
+.modal {
+  color: inherit;
+  background: #19212beb;
+  border: 1px solid #ffffff33;
+  backdrop-filter: blur(18px);
+  border-radius: 7px;
+  width: min(calc(100% - 30px), 660px);
+  max-height: calc(100svh - 40px);
+  padding: 0;
+  box-shadow: 0 20px 80px #0009;
+}
+.modal::backdrop {
+  background: #080f17a0;
+  backdrop-filter: blur(5px);
+}
+.modal > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 25px 28px;
+  border-bottom: 1px solid var(--line);
+}
+.modal h2 {
+  font:
+    700 italic 31px "Barlow Condensed",
+    sans-serif;
+  margin-top: 8px;
+}
+.modal > header button {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+}
+.modal-body {
+  padding: 23px 28px;
+}
+.modal-body p {
+  font-size: 11px;
+  line-height: 1.8;
+  color: #a5b0b9;
+  margin-bottom: 18px;
+}
+.modal-body .fine-print {
+  font-size: 9px;
+  margin: 19px 0 0;
+  color: #8997a3;
+}
+.account-form {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+.account-form label,
+.ranking-filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 10px;
+  color: #adb6bb;
+}
+input:not([type="checkbox"]),
+select {
+  background: #121a23;
+  border: 1px solid #ffffff25;
+  border-radius: 3px;
+  padding: 12px;
+  color: #f2f2ed;
+  min-width: 0;
+}
+.form-error {
+  color: #ffba98 !important;
+  margin: 0 !important;
+}
+.recovery-code {
+  display: block;
+  overflow-wrap: anywhere;
+  padding: 20px;
+  border: 1px solid var(--orange);
+  font-size: 20px;
+  margin: 20px 0;
+  background: #ff842e12;
+}
+.ranking-filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.rankings-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.rankings-table th {
+  font-size: 8px;
+  color: #8394a3;
+  text-align: left;
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--line);
+}
+.rankings-table td {
+  padding: 13px 8px;
+  border-bottom: 1px solid var(--line);
+}
+.rankings-table td:last-child {
+  font:
+    600 22px "Barlow Condensed",
+    sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+}
+.toggle-row span {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.toggle-row small {
+  color: #8da0ac;
+  font-size: 9px;
+}
+.toggle-row input {
+  accent-color: var(--orange);
+  width: 20px;
+  height: 20px;
+}
+.toggle-row select {
+  font-size: 11px;
+  max-width: 100px;
+}
+.controls-reference {
+  margin-top: 22px;
+}
+.controls-reference h3 {
+  letter-spacing: 1px;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.controls-reference p {
+  font-size: 9px;
+  margin-bottom: 10px;
+}
+.controls-reference b {
+  color: #e2e5e5;
+}
+.record-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+.record-actions button {
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  font-size: 11px;
+  min-height: 44px;
+  padding: 10px 15px;
+}
+.older-records {
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+}
+.older-records summary {
+  cursor: pointer;
+  color: var(--orange);
+}
+.older-records p {
+  margin-top: 12px;
+}

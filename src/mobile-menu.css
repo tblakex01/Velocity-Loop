@@ -1,0 +1,235 @@
+@media (max-width: 700px) {
+  .app {
+    overflow: visible;
+  }
+  .home {
+    padding: 0 18px;
+    min-height: 100svh;
+    background: linear-gradient(
+      180deg,
+      #151c26ce 0%,
+      #151c2620 12%,
+      #151c2660 23%,
+      #151c26f5 35%,
+      #151c26 58%
+    );
+  }
+  .home-header {
+    height: 60px;
+    gap: 10px;
+    border-bottom-color: #ffffff20;
+  }
+  .wordmark {
+    font-size: 20px;
+  }
+  .wordmark span {
+    letter-spacing: 3px;
+  }
+  .header-caption {
+    display: none;
+  }
+  .home-header nav {
+    gap: 9px;
+  }
+  .home-header nav button {
+    font-size: 9px;
+    min-height: 40px;
+    gap: 5px;
+  }
+  .home-header nav button:first-child span {
+    display: none;
+  }
+  .home-header nav button:first-child {
+    width: 36px;
+    justify-content: center;
+  }
+  .account-button {
+    padding: 0 10px;
+  }
+  .online-dot {
+    margin-left: 3px;
+  }
+  .menu-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    min-height: 0;
+  }
+  .showroom {
+    order: -1;
+    display: flex;
+    padding-top: 133px;
+    min-height: 236px;
+  }
+  .collection-label {
+    top: 15px;
+    font-size: 6px;
+    letter-spacing: 1.1px;
+  }
+  .scale-label {
+    padding: 5px;
+    font-size: 6px;
+  }
+  .showroom-caption {
+    position: absolute;
+    top: 91px;
+    left: 0;
+    margin: 0;
+  }
+  .showroom-caption .eyebrow {
+    font-size: 6px;
+    letter-spacing: 1.5px;
+  }
+  .showroom-caption h2 {
+    font-size: 22px;
+    margin-top: 3px;
+  }
+  .showroom-caption p {
+    font-size: 7px;
+    margin: 3px 0 0;
+  }
+  .garage {
+    gap: 5px;
+    margin-top: 12px;
+  }
+  .car-option {
+    padding: 8px 7px;
+    min-height: 60px;
+    background: #18202bf0;
+  }
+  .car-index {
+    font-size: 8px;
+  }
+  .paint-swatch {
+    width: 17px;
+    height: 4px;
+  }
+  .car-option strong {
+    font-size: 13px;
+    margin-top: 5px;
+  }
+  .car-portrait {
+    height: 30px;
+    margin: 1px 0 -2px;
+  }
+  .car-option small {
+    font-size: 6px;
+    line-height: 1.2;
+    margin-top: 3px;
+  }
+  .car-specs {
+    display: none;
+  }
+  .course-panel {
+    margin-top: 0;
+  }
+  .course-panel > .eyebrow,
+  .course-panel h1 {
+    display: none;
+  }
+  .mode-tabs {
+    gap: 20px;
+    margin-bottom: 9px;
+  }
+  .mode-tabs button {
+    font-size: 9px;
+    padding: 10px 0;
+  }
+  .course-columns {
+    font-size: 6px;
+    padding-bottom: 7px;
+  }
+  .course-row {
+    height: 47px;
+    padding: 5px 10px;
+    gap: 10px;
+  }
+  .course-number {
+    font-size: 11px;
+    width: 11px;
+  }
+  .track-map {
+    width: 51px;
+    height: 32px;
+  }
+  .course-name strong {
+    font-size: 18px;
+  }
+  .course-name {
+    gap: 4px;
+  }
+  .course-name > span {
+    font-size: 6px;
+  }
+  .difficulty {
+    font-size: 6px;
+    letter-spacing: 1px;
+  }
+  .course-time {
+    font-size: 18px;
+  }
+  .course-time small {
+    font-size: 5px;
+    margin-top: 2px;
+  }
+  .mode-note {
+    font-size: 7px;
+    margin-top: 9px;
+  }
+  .menu-footer {
+    flex-wrap: wrap;
+    gap: 9px;
+    padding: 12px 0 10px;
+    margin-top: 11px;
+    border-top: 1px solid var(--line);
+  }
+  .assist-label {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 0;
+    align-items: center;
+  }
+  .assist-label strong {
+    font-size: 11px;
+  }
+  .assist-label span {
+    font-size: 6px;
+  }
+  .assist-options {
+    width: 100%;
+    flex-basis: 100%;
+    gap: 6px;
+  }
+  .assist-options button {
+    padding: 9px 7px;
+    gap: 7px;
+    min-height: 43px;
+  }
+  .radio-dot {
+    width: 12px;
+    height: 12px;
+  }
+  .assist-options strong {
+    font-size: 13px;
+  }
+  .assist-options small {
+    font-size: 5px;
+    margin-top: 2px;
+  }
+  .race-button {
+    width: 100%;
+    min-height: 48px;
+    font-size: 24px;
+    padding: 0 22px;
+  }
+  .home-bottom {
+    padding: 3px 0 max(10px, env(safe-area-inset-bottom));
+    font-size: 5px;
+    justify-content: center;
+  }
+  .home-bottom span:last-child {
+    display: none;
+  }
+}

@@ -1,0 +1,125 @@
+.results-screen {
+  position: relative;
+  min-height: 100svh;
+}
+.results-card {
+  padding: 36px 43px;
+  background: #161d26f2;
+  border: 1px solid #ffffff26;
+  border-radius: 6px;
+  width: min(100%, 670px);
+  text-align: center;
+}
+.results-card > .eyebrow {
+  justify-content: center;
+}
+.medal-badge {
+  width: 70px;
+  height: 70px;
+  border: 1px solid #9d7857;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 25px auto 15px;
+  color: #caa780;
+  background: #9d785718;
+}
+.medal-badge.gold {
+  color: #f2cd7c;
+  border-color: #f2cd7c;
+}
+.medal-badge.silver {
+  color: #d2dbe2;
+  border-color: #d2dbe2;
+}
+.results-card h1 {
+  font:
+    800 italic 48px "Barlow Condensed",
+    sans-serif;
+}
+.finish-clock {
+  font:
+    700 75px "Barlow Condensed",
+    sans-serif;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+.finish-awards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: #c9bdab;
+}
+.orange-text {
+  color: var(--orange);
+}
+.finish-delta {
+  font-size: 10px;
+  color: #9aa8b1;
+  margin-top: 14px;
+}
+.skill-rewards {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 20px 0;
+  margin-top: 24px;
+  gap: 10px;
+}
+.skill-rewards span {
+  font-size: 6px;
+  letter-spacing: 0.7px;
+  color: #8e9ba5;
+}
+.skill-rewards b {
+  font:
+    600 23px "Barlow Condensed",
+    sans-serif;
+  display: block;
+  color: #eeeee7;
+  margin-top: 6px;
+}
+.medal-targets {
+  font-size: 8px;
+  line-height: 1.5;
+  margin-top: 14px;
+  color: #9a9b92;
+}
+.result-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  align-items: center;
+  margin-top: 25px;
+}
+.result-buttons > button:not(.primary-button) {
+  font-size: 10px;
+  min-height: 44px;
+  padding: 8px 15px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+}
+.result-competition {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 20px;
+}
+.result-competition > button {
+  font-size: 9px;
+  min-height: 30px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: #a0b4c4;
+}
+.submission-status {
+  font-size: 10px;
+  color: var(--cyan);
+  margin-top: 12px;
+  line-height: 1.5;
+}

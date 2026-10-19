@@ -1,0 +1,71 @@
+.countdown {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-shadow: 0 6px 30px #000;
+}
+.countdown strong {
+  font:
+    800 italic 140px "Barlow Condensed",
+    sans-serif;
+  color: var(--orange);
+}
+.countdown span {
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+.touch-controls {
+  display: none;
+}
+.pause-screen,
+.results-screen {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: auto;
+  background: #1119239c;
+  backdrop-filter: blur(7px);
+  padding: 25px;
+}
+.pause-card {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 320px;
+  border: 1px solid var(--line);
+  background: #161e27f5;
+  border-radius: 6px;
+}
+.pause-card h2 {
+  font-size: 38px;
+}
+.pause-card p {
+  font-size: 11px;
+  color: var(--muted);
+  max-width: 350px;
+  line-height: 1.6;
+}
+.pause-card > button {
+  min-height: 44px;
+}
+.primary-button {
+  background: var(--orange);
+  color: #171e26 !important;
+  border-radius: 3px;
+  padding: 13px 24px;
+  min-height: 46px;
+  font:
+    700 22px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}

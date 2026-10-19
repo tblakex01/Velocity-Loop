@@ -1,0 +1,91 @@
+.garage {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+  pointer-events: auto;
+}
+.car-option {
+  text-align: left;
+  border: 1px solid #ffffff2e;
+  background: #192028cc;
+  padding: 12px 10px;
+  border-radius: 3px;
+  min-width: 0;
+}
+.car-option.selected {
+  border-color: var(--orange);
+  background: #201e1bef;
+}
+.car-index {
+  font:
+    500 10px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: space-between;
+  color: #b6b6b3;
+}
+.paint-swatch {
+  background: var(--car-color);
+  height: 5px;
+  width: 23px;
+  box-shadow: 0 0 8px #ffffff10;
+  margin-top: 3px;
+  transform: skewX(-22deg);
+}
+.car-option strong {
+  display: block;
+  font:
+    600 17px "Barlow Condensed",
+    sans-serif;
+  text-transform: uppercase;
+  margin-top: 8px;
+  white-space: nowrap;
+}
+.car-portrait {
+  display: block;
+  width: 100%;
+  height: 52px;
+  object-fit: contain;
+  margin: 3px 0 -1px;
+}
+.car-option small {
+  display: block;
+  font-size: 7px;
+  margin-top: 4px;
+  color: #8f979d;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.car-specs {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18px;
+  gap: 10px;
+}
+.car-specs > span {
+  font-size: 7px;
+  letter-spacing: 1.5px;
+  color: #8e969b;
+}
+.car-specs strong {
+  display: block;
+  font:
+    600 22px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.5px;
+  color: #edede8;
+  margin-top: 5px;
+}
+.car-specs strong small {
+  font:
+    400 7px "Inter",
+    sans-serif;
+  color: #93999e;
+  margin-left: 3px;
+  letter-spacing: 0;
+}
+.car-specs .xp-level {
+  text-align: right;
+}
