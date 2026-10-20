@@ -103,6 +103,7 @@ export class GameRuntime {
           this.resumePhase = "racing";
           this.status =
             "Five-minute race limit reached. Retry to make a fresh run.";
+          this.publish();
           break;
         }
       }
@@ -118,6 +119,7 @@ export class GameRuntime {
           createdAt: new Date().toISOString(),
         };
         this.onFinish(replay, structuredClone(this.state));
+        this.publish();
       }
     }
     const ghost = this.state
@@ -129,7 +131,10 @@ export class GameRuntime {
       this.state?.boosting ?? false,
       this.phase === "racing",
     );
-    if (time - this.lastPublish > 80 || this.phase === "finished") {
+    if (
+      (this.phase === "racing" || this.phase === "countdown") &&
+      time - this.lastPublish > 80
+    ) {
       this.lastPublish = time;
       this.publish();
     }

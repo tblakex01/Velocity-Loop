@@ -151,6 +151,7 @@ export class GameRenderer {
   setCourse(id: string) {
     const definition = getCourse(id as CourseId);
     if (!definition) throw new Error(`Unknown course: ${id}`);
+    if (definition.id === this.courseId && this.track) return;
     this.courseId = definition.id;
     if (this.track) {
       this.scene.remove(this.track.root);
@@ -218,6 +219,7 @@ export class GameRenderer {
     }
   }
   setQuality(quality: "auto" | "high" | "low") {
+    if (quality === this.quality) return;
     this.quality = quality;
     this.pixelRatio =
       quality === "low"
@@ -376,6 +378,7 @@ export class GameRenderer {
     return environment;
   }
   private updateTrail(boosting: boolean, dt: number) {
+    if (!boosting && !this.trail.visible) return;
     if (boosting)
       for (const anchor of this.car.exhaustAnchors) {
         const p = this.particles[this.particleCursor++ % this.particles.length];

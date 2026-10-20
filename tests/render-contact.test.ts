@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import * as THREE from "three";
+import { acceleratedRaycast } from "three-mesh-bvh";
 import { CARS, COURSES } from "../src/game/definitions";
 import { sampleTrack, getTrackPoints } from "../src/game/track";
 import {
@@ -25,6 +26,15 @@ import { CameraRig } from "../src/render/camera";
 import { createTrackGeometry } from "../src/render/trackGeometry";
 import { createCar } from "../src/render/car";
 import { disposeObject } from "../src/render/shared";
+
+function createRoadSurface(courseId: (typeof COURSES)[number]["id"]) {
+  const surface = new THREE.Mesh(
+    createTrackGeometry(getTrackPoints(courseId)),
+    new THREE.MeshBasicMaterial({ side: THREE.DoubleSide }),
+  );
+  surface.raycast = acceleratedRaycast;
+  return surface;
+}
 
 function closestRoadDistance(
   courseId: (typeof COURSES)[number]["id"],
@@ -152,10 +162,7 @@ describe("physical render contact", () => {
     (course) => {
       const rig = new CameraRig(),
         camera = new THREE.PerspectiveCamera(52, 16 / 9, 0.05, 650),
-        surface = new THREE.Mesh(
-          createTrackGeometry(getTrackPoints(course.id)),
-          new THREE.MeshBasicMaterial({ side: THREE.DoubleSide }),
-        ),
+        surface = createRoadSurface(course.id),
         speed = 40,
         dt = 1 / 120;
       let minimumCamera = Infinity,
@@ -217,10 +224,7 @@ describe("physical render contact", () => {
   it.each(COURSES)(
     "$name keeps all three cameras visible against the actual rendered triangles",
     (course) => {
-      const surface = new THREE.Mesh(
-        createTrackGeometry(getTrackPoints(course.id)),
-        new THREE.MeshBasicMaterial({ side: THREE.DoubleSide }),
-      );
+      const surface = createRoadSurface(course.id);
       const ray = new THREE.Raycaster();
       for (const mode of ["chase", "orbit", "hood"] as const) {
         const rig = new CameraRig(),
@@ -268,10 +272,7 @@ describe("physical render contact", () => {
   it.each(COURSES)(
     "$name keeps the complete chase car envelope within the viewport through boost",
     (course) => {
-      const surface = new THREE.Mesh(
-        createTrackGeometry(getTrackPoints(course.id)),
-        new THREE.MeshBasicMaterial({ side: THREE.DoubleSide }),
-      );
+      const surface = createRoadSurface(course.id);
       const rig = new CameraRig(),
         camera = new THREE.PerspectiveCamera(52, 16 / 9, 0.05, 650),
         speed = 40,
@@ -325,10 +326,7 @@ describe("physical render contact", () => {
     "keeps every course chase envelope framed at $width×$height",
     (viewport) => {
       for (const course of COURSES) {
-        const surface = new THREE.Mesh(
-          createTrackGeometry(getTrackPoints(course.id)),
-          new THREE.MeshBasicMaterial({ side: THREE.DoubleSide }),
-        );
+        const surface = createRoadSurface(course.id);
         const rig = new CameraRig(),
           camera = new THREE.PerspectiveCamera(
             52,
@@ -451,6 +449,66 @@ describe("physical render contact", () => {
             }
         disposeObject(model.root);
       }
+    },
+  );
+});
+
+describe("indexed road collision", () => {
+  it.each(COURSES)(
+    "$name matches the original nearest triangle in world space",
+    (course) => {
+      const surface = createRoadSurface(course.id);
+      const original = new THREE.Mesh(surface.geometry, surface.material);
+      // Include nonuniform world transforms, loop crossings, misses, and clipped rays.
+      for (const mesh of [surface, original]) {
+        mesh.position.set(4, -2, 3);
+        mesh.rotation.set(0.1, 0.3, -0.2);
+        mesh.scale.set(1.2, 0.9, 1.1);
+        mesh.updateMatrixWorld(true);
+      }
+      const ray = new THREE.Raycaster();
+      ray.firstHitOnly = true;
+      let hits = 0,
+        misses = 0;
+      for (let distance = 0; distance < course.length; distance += 3) {
+        const sample = sampleTrack(course.id, distance);
+        for (const lateral of [0.7, course.width * 2]) {
+          const origin = new THREE.Vector3(...sample.center)
+            .addScaledVector(new THREE.Vector3(...sample.up), 2)
+            .addScaledVector(new THREE.Vector3(...sample.right), lateral)
+            .applyMatrix4(surface.matrixWorld);
+          const end = new THREE.Vector3(...sample.center)
+            .addScaledVector(new THREE.Vector3(...sample.up), -2)
+            .addScaledVector(new THREE.Vector3(...sample.right), lateral)
+            .applyMatrix4(surface.matrixWorld);
+          ray.set(origin, end.sub(origin).normalize());
+          for (const [near, far] of [
+            [0.01, 5],
+            [2.5, 5],
+            [0.01, 1],
+          ]) {
+            ray.near = near;
+            ray.far = far;
+            const expected = ray.intersectObject(original, false)[0];
+            const actual = ray.intersectObject(surface, false)[0];
+            expect(Boolean(actual)).toBe(Boolean(expected));
+            if (expected) {
+              hits++;
+              expect(actual.distance).toBeCloseTo(expected.distance, 8);
+              expect(actual.point.distanceTo(expected.point)).toBeLessThan(
+                1e-8,
+              );
+              expect(
+                actual.face!.normal.dot(expected.face!.normal),
+              ).toBeCloseTo(1, 8);
+            } else misses++;
+          }
+        }
+      }
+      expect(hits).toBeGreaterThan(0);
+      expect(misses).toBeGreaterThan(0);
+      surface.geometry.dispose();
+      surface.material.dispose();
     },
   );
 });

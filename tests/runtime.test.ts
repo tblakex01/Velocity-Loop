@@ -205,6 +205,31 @@ afterEach(() => {
 });
 
 describe("runtime action boundaries", () => {
+  it("keeps menu and paused snapshots idle while publishing explicit changes", () => {
+    const publish = vi.fn((value: Snapshot) => {
+      snapshot = value;
+    });
+    runtime.onSnapshot = publish;
+    for (let i = 0; i < 10; i++) frame();
+    expect(publish).not.toHaveBeenCalled();
+    race();
+    runtime.pause();
+    expect(snapshot.phase).toBe("paused");
+    publish.mockClear();
+    for (let i = 0; i < 10; i++) frame();
+    expect(publish).not.toHaveBeenCalled();
+    runtime.cycleCamera();
+    expect(publish).toHaveBeenCalledOnce();
+    expect(snapshot.camera).toBe("hood");
+    runtime.home();
+    expect(snapshot.phase).toBe("menu");
+    publish.mockClear();
+    for (let i = 0; i < 10; i++) frame();
+    expect(publish).not.toHaveBeenCalled();
+    rendering.reportStatus("Graphics restored");
+    expect(publish).toHaveBeenCalledOnce();
+    expect(snapshot.status).toBe("Graphics restored");
+  });
   it("does not advance any simulation ticks after gamepad pause inside input.read", () => {
     race();
     const before = rendered().state!;
@@ -215,6 +240,17 @@ describe("runtime action boundaries", () => {
     expect(rendered().state!.distance).toBe(before.distance);
     frame();
     expect(rendered().state!.time).toBe(before.time);
+  });
+  it("publishes the five-minute limit immediately before the race becomes idle", () => {
+    start();
+    for (let i = 0; i < 3100 && snapshot.phase !== "paused"; i++) frame();
+    expect(snapshot.phase).toBe("paused");
+    expect(snapshot.state!.tick).toBe(36000);
+    expect(snapshot.status).toContain("Five-minute race limit");
+    const publish = vi.fn();
+    runtime.onSnapshot = publish;
+    frame();
+    expect(publish).not.toHaveBeenCalled();
   });
   it("does not advance the replacement race when gamepad retry occurs inside input.read", () => {
     race();
@@ -335,8 +371,11 @@ describe("runtime action boundaries", () => {
     expect(replay!.inputs).toHaveLength(snapshot.state!.tick);
     expect(replay!.finishTime).toBe(snapshot.state!.tick * DT);
     expect(verifyReplay(replay).valid).toBe(true);
+    const publish = vi.fn();
+    runtime.onSnapshot = publish;
     frame();
     frame();
     expect(finishes).toBe(1);
+    expect(publish).not.toHaveBeenCalled();
   });
 });
